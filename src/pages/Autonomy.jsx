@@ -1,22 +1,22 @@
 import { motion } from 'framer-motion';
-import { Cpu, Truck, Activity, ArrowRight, Zap } from 'lucide-react';
+import { Cpu, Truck, Activity, ArrowRight, Zap, Car, Bot } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Autonomy = () => {
   return (
     <div className="autonomy-page">
       {/* Hero Section - Darker, High Tech Theme */}
-      <section style={{ 
-        minHeight: '85vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        background: '#0a0a0a', 
+      <section style={{
+        minHeight: '85vh',
+        display: 'flex',
+        alignItems: 'center',
+        background: '#0a0a0a',
         color: 'white',
         position: 'relative',
         overflow: 'hidden',
         paddingTop: '80px'
       }}>
-        <div style={{ 
+        <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
@@ -24,9 +24,9 @@ const Autonomy = () => {
           bottom: 0,
           background: 'radial-gradient(circle at 70% 30%, rgba(6,182,212,0.15) 0%, rgba(0,0,0,0) 60%)'
         }} />
-        
+
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -62,7 +62,7 @@ const Autonomy = () => {
             </h1>
 
             <p style={{ fontSize: '1.5rem', color: '#94a3b8', marginBottom: '3rem', maxWidth: '700px', lineHeight: '1.6' }}>
-              Production-ready solutions for autonomous systems, healthcare robotics, and edge computing. Deploy cutting-edge infrastructure that gives you a competitive advantage.
+              Production-ready infrastructure solutions for autonomous vehicles, robotics, and commercial trucking. Secure, scalable systems built right the first time.
             </p>
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -102,36 +102,36 @@ const Autonomy = () => {
       <section className="section" style={{ backgroundColor: '#0f172a', color: 'white' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            {[ 
+            {[
+              {
+                icon: Car,
+                title: 'Autonomous Vehicle Infrastructure',
+                desc: 'End-to-end infrastructure for autonomous car operations. Real-time telemetry, V2X communication systems, sensor data processing, and safety-critical computing platforms. From pilot programs to production-scale deployment.',
+                example: 'Autonomous vehicle companies, OEMs, mobility startups'
+              },
               {
                 icon: Truck,
-                title: 'Autonomous Fleet Infrastructure',
-                desc: 'Deploy autonomous vehicle operations with enterprise-grade infrastructure. Real-time telemetry, routing optimization, fleet management, and regulatory compliance. From pilot to production scale.',
-                example: 'Logistics companies, delivery services, transportation agencies'
+                title: 'Commercial Trucking & Fleet Systems',
+                desc: 'Intelligent fleet infrastructure for autonomous and semi-autonomous trucking. Route optimization, platooning systems, regulatory compliance, and real-time fleet telemetry across long-haul and last-mile operations.',
+                example: 'Trucking fleets, logistics companies, freight operators'
               },
               {
-                icon: Activity,
-                title: 'Healthcare Robotics Integration',
-                desc: 'HIPAA-compliant infrastructure for medical robotics, surgical systems, and hospital automation. Secure data pipelines, real-time monitoring, and integration with existing health IT systems.',
-                example: 'Hospitals, medical device companies, healthcare providers'
-              },
-              {
-                icon: Cpu,
-                title: 'Edge Computing & Intelligence',
-                desc: 'Low-latency distributed computing for mission-critical applications. Process data on-device for autonomous decision-making, IoT systems, and real-time analytics at the edge.',
-                example: 'Smart cities, industrial IoT, autonomous systems'
+                icon: Bot,
+                title: 'Robotics Integration & Edge Computing',
+                desc: 'Infrastructure for industrial and commercial robotics — warehouse automation, medical robotics, and manufacturing systems. Low-latency edge computing for on-device decision-making and real-time analytics.',
+                example: 'Warehousing, manufacturing, healthcare robotics'
               }
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                style={{ 
-                  padding: '2.5rem', 
-                  backgroundColor: 'rgba(255,255,255,0.03)', 
-                  borderRadius: '16px', 
+                style={{
+                  padding: '2.5rem',
+                  backgroundColor: 'rgba(255,255,255,0.03)',
+                  borderRadius: '16px',
                   border: '1px solid rgba(255,255,255,0.05)'
                 }}
               >
@@ -154,12 +154,54 @@ const Autonomy = () => {
         </div>
       </section>
 
+      {/* What We Solve */}
+      <section className="section" style={{ backgroundColor: '#0a0a0a', color: 'white', borderTop: '1px solid #1e293b' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
+            <h2 style={{ color: 'white', fontSize: '2rem', marginBottom: '1rem' }}>Infrastructure Challenges We Solve</h2>
+            <p style={{ color: '#94a3b8', fontSize: '1.1rem', lineHeight: '1.7' }}>
+              Autonomous systems demand infrastructure that's fundamentally different from traditional IT. We build it.
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem', maxWidth: '1000px', margin: '0 auto' }}>
+            {[
+              'Real-time telemetry & data pipelines',
+              'Safety-critical compute platforms',
+              'V2X & vehicle communication systems',
+              'Edge processing at the fleet level',
+              'Regulatory & compliance alignment',
+              'Sensor fusion infrastructure'
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '1rem 1.25rem',
+                  backgroundColor: 'rgba(255,255,255,0.03)',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(255,255,255,0.06)'
+                }}
+              >
+                <Cpu size={16} color="var(--accent)" style={{ flexShrink: 0 }} />
+                <span style={{ color: '#cbd5e1', fontSize: '0.95rem' }}>{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section" style={{ backgroundColor: 'black', color: 'white', textAlign: 'center', borderTop: '1px solid #1e293b' }}>
         <div className="container">
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'white' }}>Ready to deploy next-generation infrastructure?</h2>
           <p style={{ fontSize: '1.2rem', color: '#94a3b8', marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
-            Let's discuss how autonomous systems, healthcare robotics, or edge computing can transform your operations.
+            Let's discuss how autonomous vehicle, trucking, or robotics infrastructure can transform your operations.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/contact" style={{

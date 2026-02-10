@@ -14,7 +14,7 @@ const Footer = () => {
               <span>Sino Technology Solutions</span>
             </div>
             <p style={{ color: '#94a3b8' }}>
-              Next-generation technology integration for government, sports, and enterprise. We build what we recommend.
+              Enterprise-grade technology strategy for mid-market organizations. We recommend what fits — and we build what we recommend.
             </p>
           </div>
 
@@ -37,7 +37,7 @@ const Footer = () => {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'flex-start', color: '#94a3b8' }}>
                 <MapPin size={20} style={{ flexShrink: 0 }} />
-                <span>7901 4th N STE 300<br />St Petersburg, FL 33702</span>
+                <span>Tampa, FL</span>
               </li>
               <li style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', color: '#94a3b8' }}>
                 <Mail size={20} />

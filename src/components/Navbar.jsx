@@ -8,6 +8,9 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  const isHeroPage = ['/', '/autonomy'].includes(location.pathname);
+  const showLight = isHeroPage && !scrolled;
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -37,15 +40,15 @@ const Navbar = () => {
       }}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: '800', fontSize: '1.5rem', color: 'var(--primary)' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: '800', fontSize: '1.5rem', color: showLight ? 'white' : 'var(--primary)', transition: 'color 0.3s ease' }}>
           <Hexagon size={32} color="var(--secondary)" strokeWidth={2} />
           <span>Sino Technology Solutions</span>
         </Link>
         
         {/* Desktop Menu */}
         <div className="desktop-menu" style={{ display: 'none', gap: '2rem', alignItems: 'center' }}>
-          <Link to="/" style={{ fontWeight: '500', color: location.pathname === '/' ? 'var(--secondary)' : 'var(--text)' }}>Home</Link>
-          <Link to="/about" style={{ fontWeight: '500', color: location.pathname === '/about' ? 'var(--secondary)' : 'var(--text)' }}>About</Link>
+          <Link to="/" style={{ fontWeight: '500', color: location.pathname === '/' ? 'var(--secondary)' : showLight ? 'rgba(255,255,255,0.9)' : 'var(--text)', transition: 'color 0.3s ease' }}>Home</Link>
+          <Link to="/about" style={{ fontWeight: '500', color: location.pathname === '/about' ? 'var(--secondary)' : showLight ? 'rgba(255,255,255,0.9)' : 'var(--text)', transition: 'color 0.3s ease' }}>About</Link>
           
           {/* Services Dropdown */}
           <div className="group" style={{ position: 'relative' }}>
@@ -58,7 +61,8 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.25rem',
-              color: location.pathname.includes('/services') || location.pathname.includes('/autonomy') ? 'var(--secondary)' : 'var(--text)'
+              color: location.pathname.includes('/services') || location.pathname.includes('/autonomy') ? 'var(--secondary)' : showLight ? 'rgba(255,255,255,0.9)' : 'var(--text)',
+              transition: 'color 0.3s ease'
             }}>
               Services <ChevronDown size={16} />
             </button>
@@ -85,7 +89,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Link to="/contact" style={{ fontWeight: '500', color: location.pathname === '/contact' ? 'var(--secondary)' : 'var(--text)' }}>Contact</Link>
+          <Link to="/contact" style={{ fontWeight: '500', color: location.pathname === '/contact' ? 'var(--secondary)' : showLight ? 'rgba(255,255,255,0.9)' : 'var(--text)', transition: 'color 0.3s ease' }}>Contact</Link>
         </div>
         
         <style>{`
@@ -101,7 +105,7 @@ const Navbar = () => {
         <button 
           className="mobile-toggle"
           onClick={() => setIsOpen(!isOpen)}
-          style={{ background: 'none' }}
+          style={{ background: 'none', color: showLight ? 'white' : 'var(--text)', transition: 'color 0.3s ease' }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

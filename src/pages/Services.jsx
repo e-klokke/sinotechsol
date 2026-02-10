@@ -14,10 +14,10 @@ const Services = () => {
     {
       id: 'government',
       icon: Globe,
-      title: 'Government Technology Solutions',
-      description: 'Value-added reseller (VAR) services delivering hardware, software, and integrated systems to federal, state, and local agencies.',
-      details: ['GSA Schedule Procurement', 'Secure Hardware & Software', 'Compliance-First Deployments', 'Technology Integration'],
-      audience: 'Federal, state, and local government'
+      title: 'Public Sector Technology Solutions',
+      description: 'Technology procurement and integration designed for public sector compliance requirements. Secure hardware, software, and systems built to meet government standards.',
+      details: ['Compliance-First Technology Procurement', 'Secure Hardware & Software Deployment', 'Public Sector Infrastructure Integration', 'Regulatory & Security Standards Alignment'],
+      audience: 'Government agencies, public sector organizations, education'
     },
     {
       id: 'advisory',
@@ -38,18 +38,18 @@ const Services = () => {
     {
       id: 'autonomous',
       icon: Server,
-      title: 'Autonomous Infrastructure & Fleet Management',
-      description: 'Next-generation infrastructure for autonomous vehicle fleets, logistics automation, and edge computing systems.',
-      details: ['Autonomous Fleet Logistics', 'Edge Computing & Real-Time Processing', 'IoT Integration & Sensor Networks', 'Regulatory Compliance & Safety'],
-      audience: 'Logistics companies, transportation agencies'
+      title: 'Autonomous Vehicles & Trucking Infrastructure',
+      description: 'Production-ready infrastructure for autonomous cars, commercial trucking fleets, and connected vehicle systems. From pilot programs to full-scale deployment.',
+      details: ['Autonomous Vehicle & Trucking Systems', 'V2X Communication Infrastructure', 'Fleet Telemetry & Route Optimization', 'Safety-Critical Computing Platforms'],
+      audience: 'Autonomous vehicle companies, trucking fleets, logistics operators'
     },
     {
-      id: 'healthcare',
+      id: 'robotics',
       icon: Activity,
-      title: 'Healthcare Robotics & Edge Intelligence',
-      description: 'Advanced infrastructure supporting medical robotics, hospital automation, and intelligent healthcare systems.',
-      details: ['Medical Robotics IT Infrastructure', 'HIPAA-Compliant Edge Computing', 'Hospital Automation & Integration', 'Real-Time Patient Monitoring'],
-      audience: 'Healthcare providers, medical device companies'
+      title: 'Robotics & Edge Intelligence',
+      description: 'Infrastructure for industrial, commercial, and medical robotics — with edge computing for on-device decision-making and real-time analytics.',
+      details: ['Industrial & Warehouse Robotics Infrastructure', 'Medical Robotics IT Integration', 'Edge Computing & Sensor Fusion', 'Real-Time Analytics Pipelines'],
+      audience: 'Manufacturing, warehousing, healthcare robotics'
     }
   ];
 
@@ -63,10 +63,10 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             style={{ color: 'white', fontSize: '3rem', marginBottom: '1rem' }}
           >
-            Our Services
+            Our Solutions
           </motion.h1>
           <p style={{ fontSize: '1.2rem', color: '#cbd5e1', maxWidth: '600px', margin: '0 auto' }}>
-            Emerging technology integration for government, sports, and enterprise
+            Enterprise-grade technology solutions across healthcare, financial, educational, and government sectors
           </p>
         </div>
       </div>
