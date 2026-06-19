@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-archivo: system-ui, sans-serif;
+  --font-plex-sans: system-ui, sans-serif;
+  --font-plex-mono: monospace;
+}
+
+@layer base {
+  * {
+    @apply border-gray-600;
+  }
+
+  body {
+    @apply bg-navy-800 text-text-primary font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-text-primary;
+  }
+
+  /* Enhanced typography scale for dark mode readability */
+  h1 {
+    @apply font-bold tracking-tight;
+    font-weight: 700; /* Slightly heavier for dark backgrounds */
+  }
+
+  h2 {
+    @apply font-semibold tracking-tight;
+    font-weight: 600;
+  }
+
+  h3, h4 {
+    @apply font-semibold;
+    font-weight: 600;
+  }
+
+  p {
+    @apply text-text-secondary leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Glassmorphism effect for cards */
+  .glass {
+    background: rgba(26, 35, 62, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(30, 43, 62, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Glow effect for accent elements */
+  .glow {
+    box-shadow: 0 0 20px rgba(8, 145, 208, 0.3);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 10px rgba(8, 145, 208, 0.2);
+  }
+
+  /* Elevated card with depth */
+  .elevated {
+    background: linear-gradient(135deg, rgba(35, 47, 66, 0.8) 0%, rgba(26, 35, 62, 0.6) 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Smooth gradient mesh background */
+  .mesh-gradient {
+    background: radial-gradient(at 27% 37%, rgba(8, 145, 208, 0.1) 0px, transparent 50%),
+                radial-gradient(at 97% 21%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+                radial-gradient(at 52% 99%, rgba(59, 130, 246, 0.06) 0px, transparent 50%),
+                radial-gradient(at 10% 29%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+                linear-gradient(180deg, #0F1828 0%, #0A1218 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
