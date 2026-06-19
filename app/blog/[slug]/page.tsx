@@ -10,36 +10,52 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug.current,
-  }));
+  try {
+    const posts = await getAllPosts();
+    return posts.map((post) => ({
+      slug: post.slug.current,
+    }));
+  } catch {
+    // Sanity not configured, no blog posts to generate
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  try {
+    const post = await getPostBySlug(params.slug);
 
-  if (!post) {
+    if (!post) {
+      return {
+        title: "Post Not Found",
+      };
+    }
+
     return {
-      title: "Post Not Found",
+      title: post.title,
+      description: post.excerpt || `Read ${post.title} on Sino Technology Solutions blog`,
+      openGraph: post.mainImage
+        ? {
+            images: [urlFor(post.mainImage).width(1200).height(630).url()],
+          }
+        : undefined,
+    };
+  } catch {
+    return {
+      title: "Blog",
     };
   }
-
-  return {
-    title: post.title,
-    description: post.excerpt || `Read ${post.title} on Sino Technology Solutions blog`,
-    openGraph: post.mainImage
-      ? {
-          images: [urlFor(post.mainImage).width(1200).height(630).url()],
-        }
-      : undefined,
-  };
 }
 
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function BlogPostPage({ params }: Props) {
-  const post = await getPostBySlug(params.slug);
+  let post;
+  try {
+    post = await getPostBySlug(params.slug);
+  } catch {
+    notFound();
+  }
 
   if (!post) {
     notFound();

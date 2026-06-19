@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity.client";
+import type { BlogPost } from "@/lib/sanity.types";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -12,7 +13,12 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function BlogPage() {
-  const posts = await getAllPosts();
+  let posts: BlogPost[] = [];
+  try {
+    posts = await getAllPosts();
+  } catch {
+    // Sanity not configured, show empty blog
+  }
 
   return (
     <div className="min-h-screen pt-32 pb-24 px-6">
