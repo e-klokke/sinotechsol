@@ -1,72 +1,43 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { about } from "@/content/copy";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Eric Bell, Founder and CEO of Sino Technology Solutions. CEH Master certified with 15+ years of enterprise IT experience.",
+    "Eric Bell, Founder and CEO of Sino Technology Solutions. Professional basketball player turned enterprise technology leader. CEH Master certified with 15+ years building IT infrastructure, cybersecurity, and AI solutions.",
 };
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen pt-32 pb-24 px-6">
       <div className="max-w-4xl mx-auto">
-        {/* Headshot Placeholder */}
+        {/* Professional Headshot */}
         <div className="flex justify-center mb-12">
-          <div className="w-48 h-48 bg-slate rounded-full flex items-center justify-center text-gray-400">
-            {/* TODO(eric): Add LinkedIn photo here - can also link to LinkedIn profile */}
-            <span className="text-sm text-center px-4">Photo Placeholder</span>
+          <div className="relative w-64 h-64 rounded-full overflow-hidden ring-4 ring-accent/20">
+            <Image
+              src={about.photoPath}
+              alt={about.photoAlt}
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 
         {/* Name and Title */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {about.name}
+            {about.name}, {about.title}
           </h1>
-          <p className="text-xl text-gray-400">{about.title}</p>
         </div>
 
-        {/* Professional Background */}
-        <div className="space-y-12 mb-16">
-          <div>
-            <h2 className="text-2xl font-semibold text-white mb-4">Professional Background</h2>
-            <div className="space-y-4 text-gray-400">
-              <p>
-                <strong className="text-white">Certifications:</strong>{" "}
-                {about.certifications.join(", ")}
-              </p>
-              <p>
-                <strong className="text-white">Education:</strong> {about.education}
-              </p>
-              <p>
-                <strong className="text-white">Experience:</strong> 15+ years in enterprise IT including{" "}
-                {about.experience.join(", ")}
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-semibold text-white mb-4">Government Credentials</h2>
-            <div className="space-y-4 text-gray-400">
-              <p>
-                <strong className="text-white">{about.government.registry}</strong>
-              </p>
-              <p>
-                <strong className="text-white">NAICS Codes:</strong>{" "}
-                {about.government.naics.join(", ")}
-              </p>
-              <p className="text-sm">
-                Cleared for federal, state, and local contracts
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-semibold text-white mb-4">Headquarters</h2>
-            <p className="text-gray-400">{about.headquarters}</p>
-          </div>
+        {/* Biography */}
+        <div className="space-y-6 text-gray-400 leading-relaxed mb-16">
+          {about.biography.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
         </div>
 
         {/* CTA */}

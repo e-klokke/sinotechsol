@@ -32,14 +32,9 @@ export interface AboutContent {
   pageTitle: string;
   name: string;
   title: string;
-  certifications: string[];
-  education: string;
-  experience: string[];
-  government: {
-    registry: string;
-    naics: string[];
-  };
-  headquarters: string;
+  biography: string[];
+  photoPath: string;
+  photoAlt: string;
 }
 
 export interface ContactContent {
@@ -111,14 +106,17 @@ export const about: AboutContent = {
   pageTitle: "About",
   name: "Eric Bell",
   title: "Founder and CEO",
-  certifications: ["CEH Master"],
-  education: "MS in Digital and Computer Forensics",
-  experience: ["AT&T", "CenturyLink", "Duke Medical Center", "Paycom"],
-  government: {
-    registry: "SAM.gov registered",
-    naics: ["541512", "541519", "541513", "517110", "334111", "541330"],
-  },
-  headquarters: "Lisbon, Portugal and Tampa, Florida",
+  photoPath: "/eric-bell.jpg",
+  photoAlt: "Eric Bell, Founder and CEO of Sino Technology Solutions",
+  biography: [
+    "I spent a decade as a professional basketball player across five European countries. Denmark, Portugal, Estonia, Norway, Germany. Five championships. Eight MVP awards. A Hall of Fame induction at SUNY New Paltz.",
+    "That career taught me something that has nothing to do with basketball: how to operate under pressure, in unfamiliar environments, with zero margin for error. Every season was a new city, a new language, a new system to learn and perform in immediately. There was no onboarding period. You showed up and you delivered, or you went home.",
+    "When I transitioned off the court, I brought that same operating standard into enterprise technology. Over 15 years, I built and secured IT environments at AT&T, CenturyLink, Duke Medical Center, and Paycom. Networks that could not go down. Systems that had to pass compliance audits. Infrastructure that real operations depended on every day.",
+    "I earned a Master of Science in Digital and Computer Forensics and a Certified Ethical Hacker (CEH) Master certification. Not because credentials look good on a wall, but because the work I do requires knowing exactly how systems break and how to prove what happened when they do.",
+    "I founded Sino Technology Solutions to do this work on my terms: direct relationships, no layers of account managers, no junior consultants learning on your environment. When you engage STS, you get me. Fifteen years of infrastructure engineering, cybersecurity operations, and applied AI research, backed by VAR partnerships with Cisco, Dell, Oracle, HP, and Lenovo.",
+    "STS is headquartered in Lisbon, Portugal and Tampa, Florida, registered on SAM.gov, and cleared for federal, state, and local contracts.",
+    "If your IT infrastructure needs to perform, your security posture needs to hold up under scrutiny, or your AI initiative needs a proof of concept before you commit budget, that is the conversation I was built for.",
+  ],
 };
 
 export const contact: ContactContent = {
