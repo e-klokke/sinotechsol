@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { diagnosticCta } from "@/content/copy";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity.queries";
@@ -197,6 +198,16 @@ export default async function BlogPostPage({ params }: Props) {
             }}
           />
         </div>
+        {params.slug === diagnosticCta.slug && (
+          <div className="mt-8">
+            <Link
+              href={diagnosticCta.href}
+              className="inline-flex rounded-lg bg-accent px-6 py-3 font-medium text-white hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              {diagnosticCta.label}
+            </Link>
+          </div>
+        )}
       </article>
     </div>
   );

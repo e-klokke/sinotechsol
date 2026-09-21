@@ -10,10 +10,14 @@ const nextConfig = {
       },
       {
         source: "/why-us",
-        destination: "/capabilities",
+        destination: "/#capabilities",
         permanent: true,
       },
-      // Catch-all for other legacy paths - add more as identified
+      {
+        source: "/capabilities",
+        destination: "/#capabilities",
+        permanent: true,
+      },
     ];
   },
 };

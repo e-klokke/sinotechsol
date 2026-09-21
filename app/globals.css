@@ -9,6 +9,10 @@
 }
 
 @layer base {
+  #services, #capabilities {
+    scroll-margin-top: 6rem;
+  }
+
   * {
     @apply border-gray-600;
   }

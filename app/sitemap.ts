@@ -32,6 +32,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  staticPages.push(
+    ...["privacy", "terms"].map((route) => ({
+      url: `${baseUrl}/${route}`,
+      lastModified: new Date("2026-09-21T00:00:00Z"),
+      changeFrequency: "monthly" as const,
+      priority: 0.3,
+    }))
+  );
+
   // Try to get blog posts, but gracefully handle if Sanity isn't configured
   let blogPages: MetadataRoute.Sitemap = [];
   try {

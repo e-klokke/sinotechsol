@@ -1,9 +1,11 @@
 import { client } from "./sanity.client";
 import type { BlogPost } from "./sanity.types";
 
-// Get all blog posts
+// Sanity non-draft records without a status field are legacy published posts.
+// Explicit draft/review statuses and Sanity draft documents remain excluded.
+// Get all published blog posts
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const query = `*[_type == "post"] | order(publishedAt desc) {
+  const query = `*[_type == "post" && !( _id in path("drafts.**") ) && (status == "published" || !defined(status))] | order(publishedAt desc) {
     _id,
     _createdAt,
     title,
@@ -14,7 +16,12 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       alt
     },
     publishedAt,
-    author-> {
+    pillar,
+    readTime,
+    awarenessLevel,
+    seoTitle,
+    seoDescription,
+    author {
       name,
       image
     }
@@ -28,9 +35,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   }
 }
 
-// Get a single post by slug
+// Get a single published post by slug
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const query = `*[_type == "post" && slug.current == $slug][0] {
+  const query = `*[_type == "post" && slug.current == $slug && !( _id in path("drafts.**") ) && (status == "published" || !defined(status))][0] {
     _id,
     _createdAt,
     title,
@@ -42,7 +49,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     },
     body,
     publishedAt,
-    author-> {
+    pillar,
+    readTime,
+    awarenessLevel,
+    seoTitle,
+    seoDescription,
+    author {
       name,
       image
     }
@@ -56,9 +68,9 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   }
 }
 
-// Get recent posts (for homepage or sidebar)
+// Get recent published posts (for homepage or sidebar)
 export async function getRecentPosts(limit: number = 3): Promise<BlogPost[]> {
-  const query = `*[_type == "post"] | order(publishedAt desc)[0...${limit}] {
+  const query = `*[_type == "post" && !( _id in path("drafts.**") ) && (status == "published" || !defined(status))] | order(publishedAt desc)[0...${limit}] {
     _id,
     _createdAt,
     title,
@@ -68,7 +80,9 @@ export async function getRecentPosts(limit: number = 3): Promise<BlogPost[]> {
       asset->,
       alt
     },
-    publishedAt
+    publishedAt,
+    pillar,
+    readTime
   }`;
 
   try {

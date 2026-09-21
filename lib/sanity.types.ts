@@ -8,6 +8,8 @@ export interface BlogPost {
   slug: {
     current: string;
   };
+  status?: "draft" | "review" | "published";
+  pillar?: "IT Infrastructure" | "Cybersecurity" | "AI Research";
   excerpt?: string;
   mainImage?: {
     asset: {
@@ -18,6 +20,10 @@ export interface BlogPost {
   };
   body: PortableTextBlock[];
   publishedAt: string;
+  readTime?: string;
+  awarenessLevel?: "awareness" | "consideration" | "decision";
+  seoTitle?: string;
+  seoDescription?: string;
   author?: {
     name: string;
     image?: {

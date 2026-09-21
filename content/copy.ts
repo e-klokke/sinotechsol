@@ -136,11 +136,17 @@ export const contact: ContactContent = {
 export const footer: FooterContent = {
   copyright: `© ${new Date().getFullYear()} Sino Technology Solutions. All rights reserved.`,
   links: [
-    { text: "Privacy", href: "#" },
-    { text: "Terms", href: "#" },
+    { text: "Privacy", href: "/privacy" },
+    { text: "Terms", href: "/terms" },
   ],
 };
 
 export const partners = {
   logos: ["Cisco", "Dell", "Oracle", "HP", "Lenovo"],
+};
+
+export const diagnosticCta = {
+  slug: "document-fatigue-searching-for-files",
+  label: "Request your free 30-minute diagnostic",
+  href: "/contact",
 };
