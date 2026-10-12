@@ -7,7 +7,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity.client";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -23,8 +23,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
   try {
-    const post = await getPostBySlug(params.slug);
+    const post = await getPostBySlug(slug);
 
     if (!post) {
       return {
@@ -51,9 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
   let post;
   try {
-    post = await getPostBySlug(params.slug);
+    post = await getPostBySlug(slug);
   } catch {
     notFound();
   }
@@ -198,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
             }}
           />
         </div>
-        {params.slug === diagnosticCta.slug && (
+        {slug === diagnosticCta.slug && (
           <div className="mt-8">
             <Link
               href={diagnosticCta.href}
