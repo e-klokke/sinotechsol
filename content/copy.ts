@@ -136,6 +136,7 @@ export const contact: ContactContent = {
 export const footer: FooterContent = {
   copyright: `© ${new Date().getFullYear()} Sino Technology Solutions. All rights reserved.`,
   links: [
+    { text: "Free Resources", href: "/resources" },
     { text: "Privacy", href: "/privacy" },
     { text: "Terms", href: "/terms" },
   ],
