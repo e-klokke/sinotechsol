@@ -32,6 +32,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  staticPages.push({
+    url: `${baseUrl}/resources`,
+    lastModified: new Date("2026-10-16T00:00:00Z"),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  });
+
   staticPages.push(
     ...["privacy", "terms"].map((route) => ({
       url: `${baseUrl}/${route}`,
