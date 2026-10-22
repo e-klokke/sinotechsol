@@ -60,6 +60,9 @@ test.describe("SEO & Metadata", () => {
     expect(jsonContent).toContain("Organization");
     expect(jsonContent).toContain("Lisbon");
     expect(jsonContent).toContain("Tampa");
+    expect(jsonContent).toContain("St. Petersburg");
+    expect(jsonContent).toContain("JWHNQCQX9566");
+    expect(jsonContent).toContain("10KG8");
   });
 
   test("robots.txt should be accessible", async ({ page }) => {

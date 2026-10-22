@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { pageMeta } from "@/content/copy";
-import { contactEmail, siteUrl } from "@/content/site";
+import { contactEmail, legalIdentity, registeredPostalAddress, siteUrl } from "@/content/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -67,6 +67,14 @@ export default function RootLayout({
               email: contactEmail,
               description:
                 "Enterprise IT infrastructure, cybersecurity, and AI research consulting.",
+              identifier: [
+                legalIdentity.uei.trim()
+                  ? { "@type": "PropertyValue", propertyID: "UEI", value: legalIdentity.uei.trim() }
+                  : null,
+                legalIdentity.cage.trim()
+                  ? { "@type": "PropertyValue", propertyID: "CAGE", value: legalIdentity.cage.trim() }
+                  : null,
+              ].filter(Boolean),
               address: [
                 {
                   "@type": "PostalAddress",
@@ -79,7 +87,8 @@ export default function RootLayout({
                   addressRegion: "Florida",
                   addressCountry: "United States",
                 },
-              ],
+                legalIdentity.registeredAddress.trim() ? registeredPostalAddress : null,
+              ].filter(Boolean),
             }),
           }}
         />

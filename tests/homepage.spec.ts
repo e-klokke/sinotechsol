@@ -40,10 +40,19 @@ test.describe("Homepage", () => {
     await expect(page.locator("text=Government Contracting")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Hardware and Software" })).toBeVisible();
     await expect(page.getByText("Available for federal, state, and local contract work.")).toBeVisible();
+    await expect(page.getByText("UEI and CAGE assigned.")).toBeVisible();
+    await expect(page.getByText("UEI: JWHNQCQX9566 · CAGE: 10KG8").first()).toBeVisible();
+    await expect(page.getByText("7901 4th St N, Ste 300, St. Petersburg, FL 33702").first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "Pricing on request" })).toHaveAttribute(
+      "href",
+      "/contact#inquiry",
+    );
     await expect(page.getByText(/We source, deploy, and support hardware and software/)).toBeVisible();
     await expect(page.locator("body")).not.toContainText("Cleared for federal");
     await expect(page.locator("body")).not.toContainText("Authorized reseller");
-    await expect(page.locator("body")).not.toContainText("SAM.gov registered");
+    await expect(page.locator("body")).not.toContainText("SAM.gov");
+    await expect(page.locator("body")).not.toContainText("DUNS");
+    await expect(page.locator("body")).not.toContainText("EIN");
   });
 
   test("should display partner logos", async ({ page }) => {

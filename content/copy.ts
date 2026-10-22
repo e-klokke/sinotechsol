@@ -117,7 +117,7 @@ export const capabilities: CapabilitiesContent = {
     {
       title: "Government Contracting",
       description:
-        "Available for federal, state, and local contract work. NAICS: 541512, 541519, 541513, 517110, 334111, 541330.",
+        "Available for federal, state, and local contract work. UEI and CAGE assigned. NAICS: 541512, 541519, 541513, 517110, 334111, 541330.",
     },
     {
       title: "Hardware and Software",
@@ -139,7 +139,7 @@ export const about: AboutContent = {
     "I brought that same operating standard into enterprise technology. Across 15+ years in enterprise IT, during and after my playing career, I built and secured IT environments at AT&T, CenturyLink, Duke Medical Center, and Paycom. Networks that could not go down. Systems that had to pass compliance audits. Infrastructure that real operations depended on every day.",
     "I earned a Master of Science in Digital and Computer Forensics and a Certified Ethical Hacker (CEH) Master certification. Not because credentials look good on a wall, but because the work I do requires knowing exactly how systems break and how to prove what happened when they do.",
     "I founded Sino Technology Solutions to do this work on my terms: direct relationships, no layers of account managers, no junior consultants learning on your environment. When you engage STS, you get me. That is 15+ years of infrastructure engineering, cybersecurity operations, and applied AI research. We source, deploy, and support hardware and software from Cisco, Dell, Oracle, HP, and Lenovo.",
-    "STS is headquartered in Lisbon, Portugal and Tampa, Florida, and is available for federal, state, and local contract work.",
+    "STS is headquartered in Lisbon, Portugal and Tampa, Florida, and is available for federal, state, and local contract work. UEI and CAGE assigned.",
     "If your IT infrastructure needs to perform, your security posture needs to hold up under scrutiny, or your AI initiative needs a proof of concept before you commit budget, that is the conversation I was built for.",
   ],
 };
@@ -164,6 +164,11 @@ export const footer: FooterContent = {
     { text: "Privacy", href: "/privacy" },
     { text: "Terms", href: "/terms" },
   ],
+};
+
+export const pricing = {
+  label: "Pricing on request",
+  href: "/contact#inquiry",
 };
 
 export const partners = {

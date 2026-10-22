@@ -23,13 +23,24 @@ export type LegalIdentity = {
 /**
  * Legal and registration details. Leave a field as an empty string until it is
  * confirmed. The footer prints only the fields that have a value.
+ * legalEntityName stays blank: the site already uses Sino Technology Solutions.
+ * nipc stays blank until Eric supplies one.
  */
 export const legalIdentity: LegalIdentity = {
   legalEntityName: "",
-  registeredAddress: "",
+  registeredAddress: "7901 4th St N, Ste 300, St. Petersburg, FL 33702",
   nipc: "",
-  uei: "",
-  cage: "",
+  uei: "JWHNQCQX9566",
+  cage: "10KG8",
+};
+
+export const registeredPostalAddress = {
+  "@type": "PostalAddress" as const,
+  streetAddress: "7901 4th St N, Ste 300",
+  addressLocality: "St. Petersburg",
+  addressRegion: "FL",
+  postalCode: "33702",
+  addressCountry: "United States",
 };
 
 function filled(value: string): string | null {
@@ -46,14 +57,22 @@ export function legalIdentityLines(
   if (entity) lines.push(entity);
   if (address) lines.push(address);
 
-  const identifiers = [
-    filled(identity.nipc) ? `NIPC ${identity.nipc.trim()}` : "",
-    filled(identity.uei) ? `UEI ${identity.uei.trim()}` : "",
-    filled(identity.cage) ? `CAGE ${identity.cage.trim()}` : "",
+  const registration = registrationLine(identity);
+  if (registration) lines.push(registration);
+  return lines;
+}
+
+/** Buyer-facing identifier line. Empty fields are omitted. */
+export function registrationLine(
+  identity: LegalIdentity = legalIdentity,
+): string | null {
+  const parts = [
+    filled(identity.uei) ? `UEI: ${identity.uei.trim()}` : "",
+    filled(identity.cage) ? `CAGE: ${identity.cage.trim()}` : "",
+    filled(identity.nipc) ? `NIPC: ${identity.nipc.trim()}` : "",
   ].filter(Boolean);
 
-  if (identifiers.length > 0) lines.push(identifiers.join(", "));
-  return lines;
+  return parts.length > 0 ? parts.join(" · ") : null;
 }
 
 /** Returns the booking URL when it is an http(s) link, otherwise null. */

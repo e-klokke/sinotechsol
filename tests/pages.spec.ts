@@ -32,7 +32,10 @@ test.describe("About Page", () => {
     await expect(page.getByText(/AT&T, CenturyLink, Duke Medical Center, and Paycom/)).toBeVisible();
     await expect(page.locator("body")).not.toContainText("When I transitioned off the court");
     await expect(page.locator("body")).not.toContainText("Cleared for federal");
-    await expect(page.locator("body")).not.toContainText("SAM.gov registered");
+    await expect(page.getByText("UEI and CAGE assigned.")).toBeVisible();
+    await expect(page.locator("body")).not.toContainText("SAM.gov");
+    await expect(page.locator("body")).not.toContainText("DUNS");
+    await expect(page.locator("body")).not.toContainText("EIN");
 
     await expect(page.getByRole("link", { name: "Let's Talk" })).toHaveAttribute("href", "/contact");
   });
