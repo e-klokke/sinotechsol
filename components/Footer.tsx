@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { footer, contact } from "@/content/copy";
+import { legalIdentityLines } from "@/content/site";
 
 export function Footer() {
+  const identityLines = legalIdentityLines();
+
   return (
     <footer className="bg-navy-700 border-t border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-12">
@@ -29,6 +32,13 @@ export function Footer() {
             ))}
           </div>
         </div>
+        {identityLines.length > 0 && (
+          <div className="mt-8 space-y-1 text-center text-sm text-text-tertiary">
+            {identityLines.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+        )}
       </div>
     </footer>
   );

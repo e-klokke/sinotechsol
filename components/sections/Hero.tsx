@@ -1,6 +1,8 @@
 "use client";
 
 import { hero } from "@/content/copy";
+import { ctaButtonClass } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -35,8 +37,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          href="mailto:info@sinotechsol.com"
-          className="inline-block bg-accent text-white px-8 py-4 rounded-lg font-medium hover:bg-accent-hover hover:scale-105 hover:shadow-lg hover:shadow-accent/30 transition-all duration-300"
+          href="#contact"
+          className={cn(
+            ctaButtonClass,
+            "transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/30",
+          )}
         >
           {hero.cta}
         </motion.a>

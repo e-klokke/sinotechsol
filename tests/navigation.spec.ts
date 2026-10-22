@@ -15,7 +15,7 @@ test.describe("Navigation", () => {
   test("should scroll to services section on click", async ({ page }) => {
     await page.goto("/");
 
-    await page.locator('button:has-text("Services")').click();
+    await page.locator('nav a[href="/#services"]').click();
     await page.waitForTimeout(500); // Wait for smooth scroll
 
     const servicesSection = page.locator("#services");
@@ -25,7 +25,7 @@ test.describe("Navigation", () => {
   test("should scroll to capabilities section on click", async ({ page }) => {
     await page.goto("/");
 
-    await page.locator('button:has-text("Capabilities")').click();
+    await page.locator('nav a[href="/#capabilities"]').click();
     await page.waitForTimeout(500); // Wait for smooth scroll
 
     const capabilitiesSection = page.locator("#capabilities");
@@ -85,7 +85,7 @@ test.describe("Navigation", () => {
 
     // Mobile menu items should be visible - check for button/link within nav
     const nav = page.locator("nav");
-    await expect(nav.locator('button:has-text("Services")').last()).toBeVisible();
+    await expect(nav.locator('a[href="/#services"]').last()).toBeVisible();
     await expect(nav.locator('a:has-text("About")').last()).toBeVisible();
     await expect(nav.locator('a:has-text("Blog")').last()).toBeVisible();
   });

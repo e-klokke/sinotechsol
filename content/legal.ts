@@ -8,13 +8,13 @@ export interface LegalContent {
 export const privacy: LegalContent = {
   title: "Privacy Policy",
   description:
-    "How Sino Technology Solutions handles information associated with this website and email inquiries.",
-  updated: "September 21, 2026",
+    "How Sino Technology Solutions handles contact form details, site visits, and cookieless Vercel Web Analytics.",
+  updated: "October 22, 2026",
   sections: [
     {
       heading: "Who this notice covers",
       paragraphs: [
-        "This notice concerns the Sino Technology Solutions website at sinotechsol.com and inquiries sent through its email links. Sino Technology Solutions operates in Lisbon, Portugal and Tampa, Florida. For questions about this notice or your personal information, email info@sinotechsol.com.",
+        "This notice concerns the Sino Technology Solutions website at www.sinotechsol.com and inquiries sent through its contact form or email. Sino Technology Solutions operates in Lisbon, Portugal and Tampa, Florida. For questions about this notice or your personal information, email info@sinotechsol.com.",
         "Information handled during a client project may be subject to a separate service agreement or privacy notice.",
       ],
     },
@@ -22,7 +22,7 @@ export const privacy: LegalContent = {
       heading: "Information associated with your visit",
       paragraphs: [
         "When you visit, our hosting and content delivery providers receive technical information needed to deliver and secure the website, such as your IP address, requested URL, browser information, and request time. The website is hosted on Vercel, and blog content and images are provided through Sanity.",
-        "The current website does not provide account registration, newsletter signup, online payment, or a contact form. Its contact links open your email application. If you send us an email, we receive your email address, the information you include, and any attachments.",
+        "The website does not provide account registration, newsletter signup, or online payment. If you submit the contact form, we receive your name, email address, company, and a description of what you need. If you email us instead, we receive your email address, the information you include, and any attachments. Do not send passwords, credentials, or sensitive project materials through the form or email.",
       ],
     },
     {
@@ -35,13 +35,13 @@ export const privacy: LegalContent = {
     {
       heading: "Cookies and tracking",
       paragraphs: [
-        "The website application does not include advertising pixels or visitor analytics scripts, and does not set application cookies for advertising or analytics. Hosting providers may use technical mechanisms needed for security and delivery. Your email provider applies its own practices when you follow an email link and send a message.",
+        "This website uses Vercel Web Analytics to understand which pages are visited and to record that a contact form was submitted. Vercel Web Analytics is cookieless: it does not use advertising pixels and it does not set analytics cookies. Hosting providers may use technical mechanisms needed for security and delivery. Your email provider applies its own practices when you follow an email link and send a message.",
       ],
     },
     {
       heading: "Service providers and international processing",
       paragraphs: [
-        "Hosting, content delivery, and email providers process information involved in operating the website and handling correspondence. Information may also be disclosed where required by law or necessary to establish, exercise, or defend legal claims.",
+        "Vercel hosts the website and processes cookieless analytics measurements. Resend delivers contact form submissions by email. Sanity provides blog content and images. These providers, and ordinary email providers, process information involved in operating the website and handling correspondence. Information may also be disclosed where required by law or necessary to establish, exercise, or defend legal claims.",
         "These providers may process information in countries outside your country of residence, including the United States. Contact info@sinotechsol.com for information about the providers and safeguards relevant to your inquiry.",
       ],
     },
@@ -71,7 +71,7 @@ export const privacy: LegalContent = {
 export const terms: LegalContent = {
   title: "Website Terms",
   description: "Terms for using the Sino Technology Solutions informational website.",
-  updated: "September 21, 2026",
+  updated: "October 22, 2026",
   sections: [
     {
       heading: "About this website",
@@ -109,7 +109,7 @@ export const terms: LegalContent = {
     {
       heading: "Privacy and applicable rights",
       paragraphs: [
-        "Our Privacy Policy describes information associated with visits and email inquiries. These website terms do not exclude or limit rights or obligations that cannot be excluded under applicable law, and do not replace a separately agreed client contract.",
+        "Our Privacy Policy describes information associated with visits, the contact form, cookieless analytics, and email inquiries. These website terms do not exclude or limit rights or obligations that cannot be excluded under applicable law, and do not replace a separately agreed client contract.",
       ],
     },
     {

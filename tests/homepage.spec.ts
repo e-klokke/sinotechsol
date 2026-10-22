@@ -9,20 +9,19 @@ test.describe("Homepage", () => {
   test("should display new hero message", async ({ page }) => {
     await page.goto("/");
 
-    // Check for new problem-solution hero copy
     await expect(page.locator("h1")).toContainText(
-      "Your IT shouldn't be the problem"
+      "We implement IT that sustains and scales."
     );
     await expect(page.locator("text=Enterprise infrastructure")).toBeVisible();
-    await expect(page.locator("text=No complexity. No excuses.")).toBeVisible();
   });
 
-  test("should have email CTA button", async ({ page }) => {
+  test("should link the primary CTA to the contact form", async ({ page }) => {
     await page.goto("/");
 
-    const ctaButton = page.locator('a[href="mailto:info@sinotechsol.com"]').first();
+    const ctaButton = page.getByRole("link", { name: "Get Started" });
     await expect(ctaButton).toBeVisible();
-    await expect(ctaButton).toContainText("Get Started");
+    await expect(ctaButton).toHaveAttribute("href", "#contact");
+    await expect(ctaButton).not.toHaveAttribute("href", /^mailto:/);
   });
 
   test("should display all three service cards", async ({ page }) => {
@@ -39,7 +38,12 @@ test.describe("Homepage", () => {
 
     await expect(page.locator("text=IT Consulting and Sourcing")).toBeVisible();
     await expect(page.locator("text=Government Contracting")).toBeVisible();
-    await expect(page.locator("text=VAR: Value Added Reseller")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Hardware and Software" })).toBeVisible();
+    await expect(page.getByText("Available for federal, state, and local contract work.")).toBeVisible();
+    await expect(page.getByText(/We source, deploy, and support hardware and software/)).toBeVisible();
+    await expect(page.locator("body")).not.toContainText("Cleared for federal");
+    await expect(page.locator("body")).not.toContainText("Authorized reseller");
+    await expect(page.locator("body")).not.toContainText("SAM.gov registered");
   });
 
   test("should display partner logos", async ({ page }) => {
@@ -56,15 +60,21 @@ test.describe("Homepage", () => {
     await expect(page.getByText("Lenovo", { exact: true }).last()).toBeVisible();
   });
 
-  test("should display email in contact section", async ({ page }) => {
+  test("should display the contact form and an email fallback", async ({ page }) => {
     await page.goto("/");
 
-    // Scroll to contact section
     await page.locator("#contact").scrollIntoViewIfNeeded();
+
+    await expect(page.locator("#inquiry")).toBeVisible();
+    await expect(page.getByLabel("Name")).toBeVisible();
+    await expect(page.getByLabel("Email")).toBeVisible();
+    await expect(page.getByRole("textbox", { name: "Company", exact: true })).toBeVisible();
+    await expect(page.getByLabel("What do you need?")).toBeVisible();
 
     const emailLink = page.locator('#contact a[href="mailto:info@sinotechsol.com"]');
     await expect(emailLink).toBeVisible();
     await expect(emailLink).toContainText("info@sinotechsol.com");
+    await expect(page.getByRole("link", { name: "Book a time" })).toHaveCount(0);
   });
 
   test("should display dual headquarters (Lisbon + Tampa)", async ({ page }) => {

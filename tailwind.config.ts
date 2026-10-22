@@ -5,6 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -35,9 +36,12 @@ const config: Config = {
           800: "#1F2937",
         },
         accent: {
-          DEFAULT: "#0891D0", // Desaturated to 75% for dark mode harmony
+          DEFAULT: "#0891D0", // Link color on navy. White text on this fill is about 3.5:1, so buttons use accent-button.
           hover: "#0AA5E8", // Slightly brighter on hover
           glow: "rgba(8, 145, 208, 0.2)", // Soft glow effect
+          // White on #0369A1 is about 5.9:1. Hover #075985 is about 7.6:1. Both clear WCAG AA for normal text.
+          button: "#0369A1",
+          "button-hover": "#075985",
         },
         gradient: {
           from: "#0F1828",
