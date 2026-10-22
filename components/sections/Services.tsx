@@ -1,6 +1,7 @@
 "use client";
 
-import { services } from "@/content/copy";
+import Link from "next/link";
+import { pricing, services } from "@/content/copy";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -39,6 +40,11 @@ export function Services() {
             </motion.div>
           ))}
         </div>
+        <p className="mt-10 text-center text-base">
+          <Link href={pricing.href} className="text-accent underline hover:text-accent-hover">
+            {pricing.label}
+          </Link>
+        </p>
       </div>
     </section>
   );

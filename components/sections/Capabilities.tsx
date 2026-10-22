@@ -1,6 +1,7 @@
 "use client";
 
 import { capabilities } from "@/content/copy";
+import { legalIdentity, registrationLine } from "@/content/site";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -36,6 +37,14 @@ export function Capabilities() {
               <p className="text-base text-text-secondary leading-relaxed">
                 {card.description}
               </p>
+              {card.title === "Government Contracting" && registrationLine() && (
+                <div className="mt-4 space-y-2 text-base text-text-primary">
+                  <p>{registrationLine()}</p>
+                  {legalIdentity.registeredAddress.trim() && (
+                    <p className="text-text-secondary">{legalIdentity.registeredAddress}</p>
+                  )}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

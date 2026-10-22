@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { about } from "@/content/copy";
+import { about, pageMeta } from "@/content/copy";
+import { buildMetadata } from "@/lib/seo";
+import { ctaButtonClass } from "@/lib/cta";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Eric Bell, Founder and CEO of Sino Technology Solutions. Professional basketball player turned enterprise technology leader. CEH Master certified with 15+ years building IT infrastructure, cybersecurity, and AI solutions.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: pageMeta.about.title,
+  description: pageMeta.about.description,
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -44,7 +46,7 @@ export default function AboutPage() {
         <div className="text-center pt-12 border-t border-gray-600/30">
           <Link
             href="/contact"
-            className="inline-block bg-accent text-white px-8 py-3 rounded-lg font-medium hover:bg-accent-hover transition-colors"
+            className={ctaButtonClass}
           >
             Let&apos;s Talk
           </Link>

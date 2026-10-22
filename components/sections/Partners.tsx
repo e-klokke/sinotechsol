@@ -12,6 +12,7 @@ export function Partners() {
   return (
     <section className="py-16 px-6">
       <div className="max-w-6xl mx-auto" ref={ref}>
+        <p className="mb-8 text-center text-sm text-text-tertiary">{partners.caption}</p>
         <div className="flex flex-wrap justify-center items-center gap-12">
           {partners.logos.map((partner, index) => (
             <motion.div

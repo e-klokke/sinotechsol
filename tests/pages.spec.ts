@@ -5,7 +5,7 @@ test.describe("About Page", () => {
     await page.goto("/about");
 
     await expect(page).toHaveTitle(/Sino Technology Solutions/);
-    await expect(page.locator("text=CEH Master")).toBeVisible();
+    await expect(page.getByText("(CEH) Master")).toBeVisible();
     await expect(page.locator("text=Digital and Computer Forensics")).toBeVisible();
   });
 
@@ -18,12 +18,26 @@ test.describe("About Page", () => {
     await expect(mainContent.getByText(/Tampa.*Florida/)).toBeVisible();
   });
 
-  test("should have photo placeholder with TODO comment in source", async ({ page }) => {
+  test("should show Eric Bell headshot", async ({ page }) => {
     await page.goto("/about");
 
-    // Check for placeholder div
-    const placeholder = page.locator("text=Photo Placeholder");
-    await expect(placeholder).toBeVisible();
+    await expect(page.getByRole("img", { name: /Eric Bell/ })).toBeVisible();
+  });
+
+  test("should describe the IT career as overlapping the playing years", async ({ page }) => {
+    await page.goto("/about");
+
+    await expect(page.getByText(/from 2005 to 2015/)).toBeVisible();
+    await expect(page.getByText(/15\+ years in enterprise IT, during and after my playing career/)).toBeVisible();
+    await expect(page.getByText(/AT&T, CenturyLink, Duke Medical Center, and Paycom/)).toBeVisible();
+    await expect(page.locator("body")).not.toContainText("When I transitioned off the court");
+    await expect(page.locator("body")).not.toContainText("Cleared for federal");
+    await expect(page.getByText("UEI and CAGE assigned.")).toBeVisible();
+    await expect(page.locator("body")).not.toContainText("SAM.gov");
+    await expect(page.locator("body")).not.toContainText("DUNS");
+    await expect(page.locator("body")).not.toContainText("EIN");
+
+    await expect(page.getByRole("link", { name: "Let's Talk" })).toHaveAttribute("href", "/contact");
   });
 });
 
@@ -54,10 +68,12 @@ test.describe("Blog Page", () => {
 });
 
 test.describe("Contact Page", () => {
-  test("should load and display email", async ({ page }) => {
+  test("should load the inquiry form and keep email as a fallback", async ({ page }) => {
     await page.goto("/contact");
 
     await expect(page.getByRole("heading", { name: "Get in Touch" })).toBeVisible();
+    await expect(page.locator("#inquiry form")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Send message" })).toBeVisible();
 
     const emailLink = page.locator('a[href="mailto:info@sinotechsol.com"]').first();
     await expect(emailLink).toBeVisible();

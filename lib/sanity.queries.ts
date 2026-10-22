@@ -1,4 +1,4 @@
-import { client } from "./sanity.client";
+import { getSanityClient } from "./sanity.client";
 import type { BlogPost } from "./sanity.types";
 
 // Sanity non-draft records without a status field are legacy published posts.
@@ -26,6 +26,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       image
     }
   }`;
+
+  const client = getSanityClient();
+  if (!client) return [];
 
   try {
     return await client.fetch(query);
@@ -60,6 +63,9 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     }
   }`;
 
+  const client = getSanityClient();
+  if (!client) return null;
+
   try {
     return await client.fetch(query, { slug });
   } catch (error) {
@@ -84,6 +90,9 @@ export async function getRecentPosts(limit: number = 3): Promise<BlogPost[]> {
     pillar,
     readTime
   }`;
+
+  const client = getSanityClient();
+  if (!client) return [];
 
   try {
     return await client.fetch(query);

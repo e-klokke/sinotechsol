@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/sanity.queries";
+import { siteUrl } from "@/content/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://sinotechsol.com";
+  const baseUrl = siteUrl;
 
   // Static pages
   const staticPages = [
@@ -35,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   staticPages.push(
     ...["privacy", "terms"].map((route) => ({
       url: `${baseUrl}/${route}`,
-      lastModified: new Date("2026-09-21T00:00:00Z"),
+      lastModified: new Date("2026-10-22T00:00:00Z"),
       changeFrequency: "monthly" as const,
       priority: 0.3,
     }))

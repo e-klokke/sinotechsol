@@ -9,7 +9,7 @@
 }
 
 @layer base {
-  #services, #capabilities {
+  #services, #capabilities, #contact, #inquiry {
     scroll-margin-top: 6rem;
   }
 

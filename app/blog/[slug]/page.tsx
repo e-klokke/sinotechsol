@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity.client";
+import { buildMetadata } from "@/lib/seo";
+import { ctaButtonClass } from "@/lib/cta";
+import type { BlogPost } from "@/lib/sanity.types";
 
 type Props = {
   params: { slug: string };
@@ -22,29 +25,42 @@ export async function generateStaticParams() {
   }
 }
 
+function postImage(post: BlogPost): string | undefined {
+  if (!post.mainImage || !process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return undefined;
+  try {
+    return urlFor(post.mainImage).width(1200).height(630).url();
+  } catch {
+    return undefined;
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const post = await getPostBySlug(params.slug);
 
     if (!post) {
-      return {
+      return buildMetadata({
         title: "Post Not Found",
-      };
+        description: "That post is not available on the Sino Technology Solutions blog.",
+        path: `/blog/${params.slug}`,
+      });
     }
 
-    return {
-      title: post.title,
-      description: post.excerpt || `Read ${post.title} on Sino Technology Solutions blog`,
-      openGraph: post.mainImage
-        ? {
-            images: [urlFor(post.mainImage).width(1200).height(630).url()],
-          }
-        : undefined,
-    };
+    return buildMetadata({
+      title: post.seoTitle || post.title,
+      description:
+        post.seoDescription ||
+        post.excerpt ||
+        `Read ${post.title} from Sino Technology Solutions.`,
+      path: `/blog/${params.slug}`,
+      image: postImage(post),
+    });
   } catch {
-    return {
+    return buildMetadata({
       title: "Blog",
-    };
+      description: "Insights on enterprise IT, cybersecurity, and AI research.",
+      path: "/blog",
+    });
   }
 }
 
@@ -202,7 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-8">
             <Link
               href={diagnosticCta.href}
-              className="inline-flex rounded-lg bg-accent px-6 py-3 font-medium text-white hover:bg-accent-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className={ctaButtonClass}
             >
               {diagnosticCta.label}
             </Link>

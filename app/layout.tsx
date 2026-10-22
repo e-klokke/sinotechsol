@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { pageMeta } from "@/content/copy";
+import { contactEmail, legalIdentity, registeredPostalAddress, siteUrl } from "@/content/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -26,37 +29,12 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sinotechsol.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Sino Technology Solutions: IT Infrastructure, Cybersecurity, AI Research",
+    default: pageMeta.home.title,
     template: "%s | Sino Technology Solutions",
   },
-  description:
-    "Enterprise IT infrastructure, cybersecurity, and AI research consulting. Lisbon, Portugal and Tampa, Florida.",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://sinotechsol.com",
-    siteName: "Sino Technology Solutions",
-    title: "Sino Technology Solutions: IT Infrastructure, Cybersecurity, AI Research",
-    description:
-      "Enterprise IT infrastructure, cybersecurity, and AI research consulting. Lisbon, Portugal and Tampa, Florida.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Sino Technology Solutions",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sino Technology Solutions: IT Infrastructure, Cybersecurity, AI Research",
-    description:
-      "Enterprise IT infrastructure, cybersecurity, and AI research consulting. Lisbon, Portugal and Tampa, Florida.",
-    images: ["/og-image.png"],
-  },
+  description: pageMeta.home.description,
   robots: {
     index: true,
     follow: true,
@@ -85,9 +63,18 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Sino Technology Solutions",
-              url: "https://sinotechsol.com",
+              url: siteUrl,
+              email: contactEmail,
               description:
                 "Enterprise IT infrastructure, cybersecurity, and AI research consulting.",
+              identifier: [
+                legalIdentity.uei.trim()
+                  ? { "@type": "PropertyValue", propertyID: "UEI", value: legalIdentity.uei.trim() }
+                  : null,
+                legalIdentity.cage.trim()
+                  ? { "@type": "PropertyValue", propertyID: "CAGE", value: legalIdentity.cage.trim() }
+                  : null,
+              ].filter(Boolean),
               address: [
                 {
                   "@type": "PostalAddress",
@@ -100,7 +87,8 @@ export default function RootLayout({
                   addressRegion: "Florida",
                   addressCountry: "United States",
                 },
-              ],
+                legalIdentity.registeredAddress.trim() ? registeredPostalAddress : null,
+              ].filter(Boolean),
             }),
           }}
         />
@@ -111,6 +99,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

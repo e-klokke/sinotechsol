@@ -3,12 +3,14 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/sanity.queries";
 import { urlFor } from "@/lib/sanity.client";
 import type { BlogPost } from "@/lib/sanity.types";
+import { pageMeta } from "@/content/copy";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Insights on enterprise IT infrastructure, cybersecurity, and AI research from Sino Technology Solutions.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: pageMeta.blog.title,
+  description: pageMeta.blog.description,
+  path: "/blog",
+});
 
 export const revalidate = 3600; // Revalidate every hour
 
